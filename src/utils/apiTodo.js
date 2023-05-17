@@ -25,4 +25,15 @@ const deleteTodo = async (_id, setTodos) => {
   }
 }
 
-export { getAllTodos, deleteTodo }
+const editTodo = async (id, isCompleted, setTodos) => {
+  try {
+    const response = await axios.put(`${baseUrl}/${id}`, { isCompleted })
+    console.log(response)
+
+    const secondResponse = await getAllTodos(setTodos)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { getAllTodos, deleteTodo, editTodo }

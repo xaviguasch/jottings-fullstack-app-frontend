@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import './App.css'
 
-import { getAllTodos, deleteTodo } from './utils/apiTodo'
+import { getAllTodos, deleteTodo, editTodo } from './utils/apiTodo'
 
 import CreateNewTodo from './components/CreateNewTodo'
 import Todo from './components/Todo'
@@ -25,6 +25,9 @@ function App() {
             todoText={todo.text}
             todoIsCompleted={todo.todoIsCompleted}
             deleteTodoHandler={() => deleteTodo(todo._id, setTodos)}
+            editTodoHandler={editTodo}
+            setTodos={setTodos}
+            id={todo._id}
           />
         )
       })}
