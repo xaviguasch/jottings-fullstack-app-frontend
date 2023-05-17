@@ -18,19 +18,20 @@ function App() {
     <>
       <h1>Jottings App</h1>
       <CreateNewTodo />
-      {todos.map((todo) => {
-        return (
-          <Todo
-            key={todo._id}
-            todoText={todo.text}
-            todoIsCompleted={todo.todoIsCompleted}
-            deleteTodoHandler={() => deleteTodo(todo._id, setTodos)}
-            editTodoHandler={editTodo}
-            setTodos={setTodos}
-            id={todo._id}
-          />
-        )
-      })}
+      {todos &&
+        todos.map((todo) => {
+          return (
+            <Todo
+              key={todo._id}
+              todoText={todo.text}
+              todoIsCompleted={todo.isCompleted}
+              deleteTodoHandler={() => deleteTodo(todo._id, setTodos)}
+              editTodoHandler={editTodo}
+              setTodos={setTodos}
+              id={todo._id}
+            />
+          )
+        })}
     </>
   )
 }

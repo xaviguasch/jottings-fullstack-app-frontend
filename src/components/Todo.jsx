@@ -9,11 +9,17 @@ const Todo = ({
   id,
   setTodos,
 }) => {
-  const [isCompleted, setIsCompleted] = useState(todoIsCompleted)
+  const [isCompleted, setIsCompleted] = useState(todoIsCompleted || false)
 
   useEffect(() => {
     editTodoHandler(id, isCompleted, setTodos)
   }, [isCompleted])
+
+  useEffect(() => {
+    console.log('inside Todo useEffect')
+    console.log(todoIsCompleted)
+    console.log(todoText)
+  }, [])
 
   const markAsCompleteHandler = (e) => {
     setIsCompleted(e.target.checked)
