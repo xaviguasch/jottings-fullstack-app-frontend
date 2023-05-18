@@ -12,6 +12,16 @@ const getAllTodos = async (setTodos) => {
   }
 }
 
+const addNewTodo = async (newTodo, setTodos) => {
+  try {
+    const response = await axios.post(`${baseUrl}/save`, { text: newTodo })
+
+    const secondResponse = await getAllTodos(setTodos)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const deleteTodo = async (_id, setTodos) => {
   console.log(_id)
   console.log(setTodos)
@@ -35,4 +45,4 @@ const editTodo = async (id, isCompleted, setTodos) => {
   }
 }
 
-export { getAllTodos, deleteTodo, editTodo }
+export { getAllTodos, addNewTodo, deleteTodo, editTodo }

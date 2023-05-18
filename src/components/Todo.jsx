@@ -26,7 +26,7 @@ const Todo = ({
   }
   return (
     <div className={classes.Todo}>
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         <input
           type='checkbox'
           id='is-completed-checkbox'
