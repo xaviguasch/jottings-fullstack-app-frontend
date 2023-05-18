@@ -2,7 +2,13 @@ import { useState, useEffect } from 'react'
 
 import './App.css'
 
-import { getAllTodos, deleteTodo, editTodo, addNewTodo } from './utils/apiTodo'
+import {
+  getAllTodos,
+  deleteTodo,
+  editTodo,
+  addNewTodo,
+  deleteCompleted,
+} from './utils/apiTodo'
 
 import CreateNewTodo from './components/CreateNewTodo'
 import Todo from './components/Todo'
@@ -20,9 +26,7 @@ function App() {
   const uncompletedTodos = todos.filter((todo) => !todo.isCompleted)
 
   const clearCompletedHandler = () => {
-    setTodos(uncompletedTodos)
-
-    // make api call to delete the completed todos
+    deleteCompleted(setTodos)
   }
 
   let filteredTodos = []

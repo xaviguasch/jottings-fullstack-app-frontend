@@ -23,12 +23,18 @@ const addNewTodo = async (newTodo, setTodos) => {
 }
 
 const deleteTodo = async (_id, setTodos) => {
-  console.log(_id)
-  console.log(setTodos)
-
   try {
     const response = await axios.delete(`${baseUrl}/${_id}`)
 
+    const secondResponse = await getAllTodos(setTodos)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const deleteCompleted = async (setTodos) => {
+  try {
+    const response = await axios.delete(`${baseUrl}/clear-completed`)
     const secondResponse = await getAllTodos(setTodos)
   } catch (error) {
     console.log(error)
@@ -45,4 +51,4 @@ const editTodo = async (id, isCompleted, setTodos) => {
   }
 }
 
-export { getAllTodos, addNewTodo, deleteTodo, editTodo }
+export { getAllTodos, addNewTodo, deleteTodo, editTodo, deleteCompleted }
