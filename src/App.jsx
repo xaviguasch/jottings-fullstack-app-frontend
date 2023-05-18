@@ -16,14 +16,31 @@ function App() {
     getAllTodos(setTodos)
   }, [])
 
+  const completedTodos = todos.filter((todo) => todo.isCompleted)
   const uncompletedTodos = todos.filter((todo) => !todo.isCompleted)
+
+  const clearCompletedHandler = () => {
+    setTodos(uncompletedTodos)
+
+    // make api call to delete the completed todos
+  }
+
+  let filteredTodos = []
+
+  if (mode === 'all') {
+    filteredTodos = todos
+  } else if (mode === 'active') {
+    filteredTodos = uncompletedTodos
+  } else if (mode === 'completed') {
+    filteredTodos = completedTodos
+  }
 
   return (
     <>
       <h1>Jottings App</h1>
       <CreateNewTodo setTodos={setTodos} addNewTodoHandler={addNewTodo} />
       {todos &&
-        todos.map((todo) => {
+        filteredTodos.map((todo) => {
           return (
             <Todo
               key={todo._id}
@@ -36,7 +53,11 @@ function App() {
             />
           )
         })}
-      <ControlBoard pendingTodosNum={uncompletedTodos.length} />
+      <ControlBoard
+        pendingTodosNum={uncompletedTodos.length}
+        setModeHandler={setMode}
+        onClearCompeted={clearCompletedHandler}
+      />
     </>
   )
 }
