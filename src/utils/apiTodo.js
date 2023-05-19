@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:5000/api'
+const baseUrl = 'https://dull-red-gosling-wrap.cyclic.app/api'
 
 const getAllTodos = async (setTodos) => {
   try {
